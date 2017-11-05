@@ -33,7 +33,9 @@ run_sample(Module) ->
     Expected = read_file("sample/output/", Module),
     Actual = ensure_binary(erlang:apply(Module, run, [Input])),
     ?assertEqual(Expected, Actual),
-    io:format(standard_error, "~s~n", [Actual]).
+    io:format("-----BEGIN ANSWER-----~n", []),
+    io:format("~s~n", [Actual]),
+    io:format("-----END ANSWER-----~n", []).
 
 run(Module) ->
     purge(Module),
